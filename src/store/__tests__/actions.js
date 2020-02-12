@@ -17,6 +17,6 @@ describe('actions', () => {
     };
     actions.fetchListData(context, { type });
     await flushPromises();
-    expect(context.commit()).toHaveBeenCalledWith('setItems', { items });
+    expect(context.commit).toHaveBeenCalledWith('setItems', { items });
   });
 });
