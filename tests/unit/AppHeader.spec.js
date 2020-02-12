@@ -12,7 +12,7 @@ describe('AppHeader', () => {
   test('if user is logged in, show logout button', () => {
     const wrapper = shallowMount(AppHeader); // mounting the component
     wrapper.setData({ loggedIn: true }); // setting our data value
-    // console.log(wrapper.html());
+    // debugger;
     expect(wrapper.find('button').isVisible()).toBe(true);
   });
 });

@@ -1,9 +1,14 @@
 <template>
-  <div>Item</div>
+  <ul>
+    <li>
+      <a :href="item.url">{{ item.title }}</a>
+    </li>
+  </ul>
 </template>
 
 <script>
 export default {
+  props: ['item'],
   data() {
     return {};
   },
