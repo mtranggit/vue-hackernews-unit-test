@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils';
 import Vuex from 'vuex';
 import merge from 'lodash.merge';
+import mergeWith from 'lodash.mergewith';
 import ItemList from '@/views/ItemList';
 import Item from '@/components/Item';
 // import { fetchListData } from '@/api/api';
@@ -10,6 +11,19 @@ import flushPromises from 'flush-promises';
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
+
+// If customizer returns a value,
+// Lodash will assign the property using the new value.
+// If customizer returns undefined, Lodash will use the default merge strategy
+function customizer(objValue, srcValue) {
+  if (Array.isArray(srcValue)) {
+    return srcValue;
+  }
+  if (srcValue instanceof Object && Object.keys(srcValue).length === 0) {
+    return srcValue;
+  }
+  // return srcValue ? srcValue : objValue;
+}
 
 describe('ItemList.Vue', () => {
   function createStore(overrides) {
@@ -21,7 +35,8 @@ describe('ItemList.Vue', () => {
         fetchListData: jest.fn(() => Promise.resolve()),
       },
     };
-    return new Vuex.Store(merge(defaultStoreConfig, overrides));
+    return new Vuex.Store(mergeWith(defaultStoreConfig, overrides, customizer));
+    // return new Vuex.Store(merge(defaultStoreConfig, overrides));
   }
 
   function createWrapper(overrides) {
@@ -36,7 +51,8 @@ describe('ItemList.Vue', () => {
       localVue,
       store: createStore(),
     };
-    return shallowMount(ItemList, merge(defaultMountingOptions, overrides));
+    return shallowMount(ItemList, mergeWith(defaultMountingOptions, overrides, customizer));
+    // return shallowMount(ItemList, merge(defaultMountingOptions, overrides));
   }
   // let storeOptions;
   // let store;
