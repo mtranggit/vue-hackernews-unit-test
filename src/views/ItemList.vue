@@ -1,6 +1,6 @@
 <template>
   <div class="item-list">
-    <Item v-for="item in displayItems" :key="item.id" :item="item" />
+    <Item v-for="item in $store.getters.displayItems" :key="item.id" :item="item" />
   </div>
 </template>
 
@@ -15,15 +15,19 @@ export default {
   beforeMount() {
     this.loadItems();
   },
-  data() {
-    return {
-      displayItems: [],
-    };
-  },
+  // data() {
+  //   return {
+  //     displayItems: [],
+  //   };
+  // },
   methods: {
     loadItems() {
       this.$bar.start();
-      fetchListData('top')
+      this.$store
+        .dispatch('fetchListData', {
+          type: 'top',
+        })
+        // fetchListData('top')
         .then(items => {
           this.displayItems = items;
           this.$bar.finish();
