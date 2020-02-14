@@ -19,7 +19,7 @@
 <script>
 import Item from '@/components/Item.vue';
 import { fetchListData } from '@/api/api';
-import { titleMixin } from '../utils/mixins';
+// import { titleMixin } from '../utils/mixins';
 
 function capitalizeFirstLetter(title) {
   return title.charAt(0).toUpperCase() + title.slice(1);
@@ -35,7 +35,7 @@ export default {
   title() {
     return `${capitalizeFirstLetter(this.$route.params.type)}`;
   },
-  mixins: [titleMixin],
+  // mixins: [titleMixin],
   // data() {
   //   return {
   //     displayItems: [],
