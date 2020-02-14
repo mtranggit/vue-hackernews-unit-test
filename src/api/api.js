@@ -18,3 +18,18 @@ export function fetchListData(type) {
   console.log('Fetching data for type ', type);
   return Promise.resolve([]);
 }
+
+export function fetchItem(id) {
+  console.log('Fetching item id ', id);
+  return Promise.resolve({});
+}
+
+export function fetchItems(ids) {
+  console.log('Fetching items with ids', ids);
+  return Promise.resolve([{}]);
+}
+
+export function fetchUser(id) {
+  console.log('Fetching user id ', id);
+  return Promise.resolve({ id });
+}

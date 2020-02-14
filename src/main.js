@@ -5,6 +5,7 @@ import store from './store';
 import { sync } from 'vuex-router-sync';
 
 import { titleMixin } from './utils/mixins';
+import { host, timeAgo } from './utils/filters';
 import ProgressBar from '@/components/ProgressBar';
 
 // Vue.config.productionTip = false;
@@ -18,6 +19,8 @@ import ProgressBar from '@/components/ProgressBar';
 sync(store, router);
 
 Vue.mixin(titleMixin);
+Vue.filter('timeAgo', timeAgo);
+Vue.filter('host', host);
 
 const bar = new Vue(ProgressBar).$mount();
 Vue.prototype.$bar = bar;
