@@ -19,6 +19,11 @@
 <script>
 import Item from '@/components/Item.vue';
 import { fetchListData } from '@/api/api';
+import { titleMixin } from '../utils/mixins';
+
+function capitalizeFirstLetter(title) {
+  return title.charAt(0).toUpperCase() + title.slice(1);
+}
 
 export default {
   components: {
@@ -27,6 +32,10 @@ export default {
   beforeMount() {
     this.loadItems();
   },
+  title() {
+    return `${capitalizeFirstLetter(this.$route.params.type)}`;
+  },
+  mixins: [titleMixin],
   // data() {
   //   return {
   //     displayItems: [],

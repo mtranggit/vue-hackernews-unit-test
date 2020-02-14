@@ -325,4 +325,16 @@ describe('ItemList.Vue', () => {
         .text(),
     ).toBe('more >');
   });
+
+  test('sets document.title with the capitalized type prop', () => {
+    const mocks = {
+      $route: {
+        params: {
+          type: 'top',
+        },
+      },
+    };
+    createWrapper({ mocks });
+    expect(document.title).toBe('Vue HN | Top');
+  });
 });
