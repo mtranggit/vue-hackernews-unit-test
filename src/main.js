@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import { sync } from 'vuex-router-sync';
 
 import ProgressBar from '@/components/ProgressBar';
 
@@ -12,6 +13,8 @@ import ProgressBar from '@/components/ProgressBar';
 //   store,
 //   render: h => h(App),
 // }).$mount('#app');
+
+sync(store, router);
 
 const bar = new Vue(ProgressBar).$mount();
 Vue.prototype.$bar = bar;
